@@ -1,0 +1,56 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="centre">
+  <h1 class="pagetitle">Add book to library</h1><br>
+  <div class="createDiv">
+    <form action="/addbook" method="post" name="addbook" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          <h2 class="formTitle" contenteditable>Book Title<span style="color: red">*</span></h2><br>
+           <div class="input-group">
+             {{ form.title (class_="form-control", placeholder="enter book title")}}
+           </div>
+           <br>
+        </div>
+        <div class="form-group">
+          <br>
+          <h2 class="formTitle" contenteditable>Author<span style="color: red">*</span></h2><br>
+          <div class="input-group">
+            {{ form.author (class_="form-control", placeholder="enter book author")}}
+          </div>
+          <br>
+        </div>
+        <div class="form-group">
+          <br>
+          <h2 class="formTitle">Date published(dd-mm-YYYY)</h2><br>
+          <div class="input-group">
+            {{form.date (class_="form-control", placeholder="enter date published (dd-mm-yyyy)")}}
+          </div>
+          <br>
+        </div>
+        <div class="form-group">
+          <br>
+          <h2 class="formTitle">Short description/blurb</h2><br>
+          <div class="input-group">
+            {{form.blurb (class_="form-control", placeholder="enter short description")}}
+          </div>
+          <br>
+        </div>
+        <div class="form-group">
+          <br>
+          <h2 class="formTitle">Please upload an image of the front cover</h2><br>
+          <div class="form">
+            {{form.file (class_="form-control-file")}}
+          </div>
+          <br>
+        </div>
+        <div>
+          <input type="submit" value="Add book" class="btn btn-primary" id="submitnewbook">
+        </div>
+    </form>
+  </div>
+</div>
+
+<!-- script to fade in forms when they are completed -->
+
+{% endblock %}
