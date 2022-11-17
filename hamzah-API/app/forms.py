@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import DateField, TextField, BooleanField, FileField, PasswordField
+from wtforms import TextField
 from wtforms.validators import *
 
 class League(Form): #defining user class
