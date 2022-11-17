@@ -18,5 +18,5 @@ admin = Admin(app,template_mode='bootstrap3')
 log = getLogger('werkzeug')
 log.setLevel(ERROR)
 
-from app import views
+# from app import views
 from app import models
