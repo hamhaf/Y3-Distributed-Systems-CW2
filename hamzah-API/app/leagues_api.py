@@ -9,7 +9,7 @@ api = Api(app)
 class GetLeague(Resource):
 
     def get(self, country):
-        league = models.League.Property.query.filter_by(country = country).first()
+        league = models.League.query.filter_by(country = country).first()
         dict = {'country' : country,
                 'league' : league}
         league = json.dumps(dict)
@@ -19,7 +19,7 @@ class GetLeague(Resource):
 class PostLeague(Resource):
 
     def post(self, league, country):
-        item = models.League(league_name="Premier League", country="England")
+        item = models.League(league_name=league, country=country)
         db.session.add(item)
         db.session.commit()
         posted = {'country' : country,
@@ -30,8 +30,9 @@ class PostLeague(Resource):
 
 
 class PutLeague(Resource):
+
     def put(self, old_league, new_league):
-        league = models.League.Property.query.filter_by(league_name = old_league).first()
+        league = models.League.query.filter_by(league_name = old_league).first()
         league.league_name = new_league
         db.session.commit()
         print (f"changed '{old_league}' to '{new_league}'")
@@ -40,8 +41,17 @@ class PutLeague(Resource):
         changed = json.dumps(changed)
         return changed
 
-class DeleteLeague(Resource):
-    def delete(self, league=None, id=None):
-        return json
 
-api.add_resource(League, )
+class DeleteLeague(Resource):
+
+    def delete(self, id):
+        models.League.query.filter_by(id = id).delete()
+        deleted = {'deleted':id}
+        deleted = json.dumps(deleted)
+        print(f"deleted record with id: {id}")
+        return deleted
+
+api.add_resource(GetLeague, '/LeagueAPI/GetLeague/<string:country>')
+api.add_resource(PostLeague, '/LeagueAPI/PostLeague/<string:league>&<string:country>')
+api.add_resource(PutLeague, '/LeagueAPI/PutLeague/<string:old_league>&<string:new_league>')
+api.add_resource(DeleteLeague, '/LeagueAPI/DeleteLeague/<int:id>')
