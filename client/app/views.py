@@ -15,5 +15,13 @@ def index():#the home page will be the login/sign up page
 
 @app.route('/findLeague', methods=['GET'])
 def findLeague():
-    form = CountryForm
-    league = 
+    form = CountryForm()
+    country = form.country.data
+    league = requests.get(f"127.0.0.1:8001/league/getleague/{country}")
+    print(league)
+    return redirect(url_for())
+
+@app.route('showLeague')
+def showLeague():
+    # teams = list of teams from adams api
+    return render_template('showLeague.html', title='League Name'```, teams = teams```)
