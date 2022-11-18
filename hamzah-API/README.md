@@ -1,4 +1,5 @@
-# distributed-systems-cw
+# distributed-systems-cw/hamzah-API
+run on port 6001
 
 
 
