@@ -3,9 +3,9 @@
 <div class="centre"> <!-- used to centre divs -->
   <h1 class="pagetitle">Select a team from {{league}}</h1><br>
   <div>
-    <p class="jumbop">Team 1</p>
-    <p class="jumbop">Team 2</p>
-    <p class="jumbop">Team 3</p>
+    {%for team in teams%}
+    <p class="jumbop">{{team}}</p>
+    {%endfor%}
   </div>
 </div>
 {% endblock %}

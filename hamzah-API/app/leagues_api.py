@@ -21,10 +21,11 @@ class GetLeague(Resource):
                     'country' : country,
                     'league' : league_name}
             print(f"returned {league_name}")
+            return dict, 201
         else:
             dict = {'error':f'could not find the first division league in {country}'}
             print(f"could not find the first division league in {country}")
-        return dict
+            abort(404, description=dict['error'])
 
 class PostLeague(Resource):
 
@@ -48,7 +49,7 @@ class PostLeague(Resource):
                     'country' : country,
                     'league' : league}
             print(f"posted '{posted}' to the db")
-            return posted
+            return posted, 201
         elif not item.league_name:
             # message = "please provide a league name"
             print(f"please provide a league name")
