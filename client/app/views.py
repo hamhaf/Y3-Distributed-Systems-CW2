@@ -6,8 +6,7 @@ from sqlalchemy import exists
 import os,time
 from datetime import date
 from werkzeug.utils import secure_filename
-import requests
-import http.client
+import http.client, json
 
 
 @app.route('/')
@@ -20,10 +19,10 @@ def findLeague():
     form = CountryForm()
     country = form.country.data
     try:
-        conn = http.client.HTTPSConnection("127.0.0.1:8001")
+        conn = http.client.HTTPConnection("127.0.0.1:8001")
         conn.request("GET",f"/league/getleague/{country}")
         res = conn.getresponse()
-        league = res.read()
+        league = json.loads(res.read().decode("utf-8"))['league']
         session['league'] = league
     except:
         league = "no response"
