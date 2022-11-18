@@ -3,10 +3,7 @@
 <div class="centre"> <!-- used to centre divs -->
   <h1 class="pagetitle">Select a team from {{league}}</h1><br>
   <div>
-    {%for team in teams%}
-    <a href="{{url_for('teamInfo', team=team)}}" class="jumbop">{{team}}</a>
-    <br>
-    {%endfor%}
+    {{data}}
   </div>
 </div>
 {% endblock %}

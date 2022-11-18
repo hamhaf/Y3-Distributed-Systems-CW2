@@ -34,5 +34,32 @@ def findLeague():
 def showLeague():
     league = session.get('league')
     # teams = list of teams from adams api
-    teams = ['Team 1', 'Team 2', 'Team 3']
+    teams = ['Manchester United', 'Liverpool', 'Real Madrid']
     return render_template('showLeague.html', title='League Name', league=league, teams = teams)
+
+@app.route('/teamInfo/<team>')
+def teamInfo(team):
+    flash(team)
+    team = team
+    # external API call
+    try:
+        conn = http.client.HTTPSConnection("v3.football.api-sports.io")
+        headers = {
+            'x-rapidapi-host': "v3.football.api-sports.io",
+            'x-rapidapi-key': "7070e4c98d8ff888e50ff23ce14d6c4c"
+            }
+        conn.request("GET", "/teams?id=33", headers=headers)
+
+        res = conn.getresponse()
+        data = json.loads(res.read().decode("utf-8"))
+        flash(data)
+        flash(f"res: {res}")
+        session['data']=data
+    except:
+        data = "no response"
+    return redirect(url_for('showInfo'))
+
+@app.route('/showInfo')
+def showInfo():
+    data = session.get('data')
+    return render_template('teamInfo.html', title='Team Info', data=data)
