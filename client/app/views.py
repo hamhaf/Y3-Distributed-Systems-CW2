@@ -27,10 +27,10 @@ def findLeague():
     except:
         league = "no response"
     flash(league)
-    return redirect(url_for('index'))
+    return redirect(url_for('showLeague'))
 
-# @app.route('/showLeague')
-# def showLeague():
-#     league = session.get('league')
-#     # teams = list of teams from adams api
-#     return render_template('showLeague.html', title='League Name', league=league)
+@app.route('/showLeague')
+def showLeague():
+    league = session.get('league')
+    # teams = list of teams from adams api
+    return render_template('showLeague.html', title='League Name', league=league)
