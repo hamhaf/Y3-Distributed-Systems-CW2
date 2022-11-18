@@ -2,10 +2,10 @@ from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 from app import models, db, app
 
-parser = reqparse.RequestParser()
-parser.add_argument('id')
-parser.add_argument('league')
-parser.add_argument('country')
+# parser = reqparse.RequestParser()
+# parser.add_argument('id')
+# parser.add_argument('league')
+# parser.add_argument('country')
 
 
 
@@ -17,7 +17,8 @@ class GetLeague(Resource):
         league = models.League.query.filter_by(country = country).first()#.league_name
         if league != None:
             league_name = league.league_name
-            dict = {'country' : country,
+            dict = {'id':league.id,
+                    'country' : country,
                     'league' : league_name}
             print(f"returned {league_name}")
         else:
