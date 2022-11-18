@@ -32,10 +32,10 @@ class PostLeague(Resource):
     #     self.country = parser.parse_args().get('country',None)
         
 
-    def post(self):
-        args = parser.parse_args()
-        league = args['league']
-        country = args['country']
+    def post(self, league, country):
+        # args = parser.parse_args()
+        # league = args['league']
+        # country = args['country']
         item = models.League(league_name=league, country=country)
         message = f"item.league_name = {item.league_name}, item.country = {item.country}"
         print(message)
@@ -64,11 +64,11 @@ class PostLeague(Resource):
 
 class PutLeague(Resource):
 
-    def put(self):
-        args = parser.parse_args()
-        recordID = args['id']
-        league = args['league']
-        country = args['country']
+    def put(self, recordID, league, country):
+        # args = parser.parse_args()
+        # recordID = args['id']
+        # league = args['league']
+        # country = args['country']
         
         record = models.League.query.filter_by(id = recordID).first()
         if record != None:
@@ -88,9 +88,9 @@ class PutLeague(Resource):
 
 class DeleteLeague(Resource):
 
-    def delete(self):
-        args = parser.parse_args()
-        recordID = args['id']
+    def delete(self, recordID):
+        # args = parser.parse_args()
+        # recordID = args['id']
         record = models.League.query.filter_by(id = recordID)
         if record.first() is not None:
             league_name = record.first().league_name
@@ -106,6 +106,6 @@ class DeleteLeague(Resource):
         return deleted
 
 api.add_resource(GetLeague, '/league/getleague/<string:country>')
-api.add_resource(PostLeague, '/league/postleague')
-api.add_resource(PutLeague, '/league/putleague')
-api.add_resource(DeleteLeague, '/league/deleteleague')
+api.add_resource(PostLeague, '/league/postleague/<string:league>/<string:country>')
+api.add_resource(PutLeague, '/league/putleague/<int:recordID>/<string:league>/<string:country>')
+api.add_resource(DeleteLeague, '/league/deleteleague/<int:recordID>')
