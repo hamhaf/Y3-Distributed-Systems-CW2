@@ -5,6 +5,9 @@ from app import models, db, app
 parser = reqparse.RequestParser()
 parser.add_argument('league')
 parser.add_argument('country')
+parser.add_argument('old_league')
+parser.add_argument('new_league')
+
 
 api = Api(app)
 
@@ -59,16 +62,24 @@ class PostLeague(Resource):
 
 class PutLeague(Resource):
 
-    def put(self, old_league, new_league):
+    def put(self):
+        args = parser.parse_args()
+        old_league = args['old_league']
+        new_league = args['new_league']
+        o
         league = models.League.query.filter_by(league_name = old_league).first()
-        league.league_name = new_league
-        db.session.commit()
-        print (f"changed '{old_league}' to '{new_league}'")
-        print(changed)
-        changed = {'old_league':old_league,
-                    'new_league':new_league}
-        
-        return changed
+        if league != None:
+            league.league_name = new_league
+            db.session.commit()
+            print (f"changed '{old_league}' to '{new_league}'")
+            changed = {'old_league':old_league,
+                        'updated_league':new_league}
+            print(changed)
+            return changed
+        else:
+            message = f"could not find league \'{old_league}\'"
+            print(message)
+            return {"message":message}
 
 
 class DeleteLeague(Resource):
@@ -82,5 +93,5 @@ class DeleteLeague(Resource):
 
 api.add_resource(GetLeague, '/league/getleague/<string:country>')
 api.add_resource(PostLeague, '/league/postleague')
-api.add_resource(PutLeague, '/league/putleague/<string:old_league>&<string:new_league>')
+api.add_resource(PutLeague, '/league/putleague')
 api.add_resource(DeleteLeague, '/league/deleteleague/<int:id>')

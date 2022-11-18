@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <title>KeyError: 'league' // Werkzeug Debugger</title>
+    <title>TypeError: put() missing 2 required positional arguments: 'old_league' and 'new_league' // Werkzeug Debugger</title>
     <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
         type="text/css">
     <!-- We need to make sure this has a favicon so that the debugger does
@@ -13,27 +13,27 @@
     <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
     <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
     <script type="text/javascript">
-      var TRACEBACK = 140005072613840,
+      var TRACEBACK = 140402981544568,
           CONSOLE_MODE = false,
           EVALEX = true,
           EVALEX_TRUSTED = false,
-          SECRET = "dxZix0Eu1WtcdbXB9IOW";
+          SECRET = "32OvzV7hZId0MKMFLxtk";
     </script>
   </head>
   <body style="background-color: #fff">
     <div class="debugger">
-<h1>KeyError</h1>
+<h1>TypeError</h1>
 <div class="detail">
-  <p class="errormsg">KeyError: 'league'</p>
+  <p class="errormsg">TypeError: put() missing 2 required positional arguments: 'old_league' and 'new_league'</p>
 </div>
 <h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
 <div class="traceback">
   
-  <ul><li><div class="frame" id="frame-140005070769456">
+  <ul><li><div class="frame" id="frame-140402979597840">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">2464</em>,
       in <code class="function">__call__</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
 <pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
 <pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
@@ -44,11 +44,11 @@
 <pre class="line after"><span class="ws">        </span>return &quot;&lt;%s %r&gt;&quot; % (self.__class__.__name__, self.name)</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769512">
+<li><div class="frame" id="frame-140402979597896">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">2450</em>,
       in <code class="function">wsgi_app</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span>try:</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span>try:</pre>
 <pre class="line before"><span class="ws">                </span>ctx.push()</pre>
 <pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
 <pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
@@ -61,11 +61,11 @@
 <pre class="line after"><span class="ws">        </span>finally:</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769568">
+<li><div class="frame" id="frame-140402979597952">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py"</cite>,
       line <em class="line">272</em>,
       in <code class="function">error_router</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+  <div class="source "><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
 <pre class="line before"><span class="ws">            </span>try:</pre>
 <pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
 <pre class="line before"><span class="ws">            </span>except Exception:</pre>
@@ -78,11 +78,11 @@
 <pre class="line after"><span class="ws"></span> </pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070768672">
+<li><div class="frame" id="frame-140402979597056">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">1867</em>,
       in <code class="function">handle_exception</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
 <pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
 <pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
 <pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
@@ -95,11 +95,11 @@
 <pre class="line after"><span class="ws">        </span>server_error = InternalServerError()</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769680">
+<li><div class="frame" id="frame-140402979598064">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/_compat.py"</cite>,
       line <em class="line">38</em>,
       in <code class="function">reraise</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">    </span>from io import StringIO</pre>
+  <div class="source "><pre class="line before"><span class="ws">    </span>from io import StringIO</pre>
 <pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
 <pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
@@ -112,11 +112,11 @@
 <pre class="line after"><span class="ws"></span>else:</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769232">
+<li><div class="frame" id="frame-140402979597616">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">2447</em>,
       in <code class="function">wsgi_app</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+  <div class="source "><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
 <pre class="line before"><span class="ws">        </span>error = None</pre>
 <pre class="line before"><span class="ws">        </span>try:</pre>
 <pre class="line before"><span class="ws">            </span>try:</pre>
@@ -129,11 +129,11 @@
 <pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769792">
+<li><div class="frame" id="frame-140402979598176">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">1952</em>,
       in <code class="function">full_dispatch_request</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
 <pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
 <pre class="line before"><span class="ws">            </span>if rv is None:</pre>
 <pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
@@ -146,11 +146,11 @@
 <pre class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769848">
+<li><div class="frame" id="frame-140402979598232">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py"</cite>,
       line <em class="line">272</em>,
       in <code class="function">error_router</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
+  <div class="source "><pre class="line before"><span class="ws">        </span>if self._has_fr_route():</pre>
 <pre class="line before"><span class="ws">            </span>try:</pre>
 <pre class="line before"><span class="ws">                </span>return self.handle_error(e)</pre>
 <pre class="line before"><span class="ws">            </span>except Exception:</pre>
@@ -163,11 +163,11 @@
 <pre class="line after"><span class="ws"></span> </pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070768616">
+<li><div class="frame" id="frame-140402979597000">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">1821</em>,
       in <code class="function">handle_user_exception</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
 <pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
 <pre class="line before"><span class="ws"></span> </pre>
@@ -180,11 +180,11 @@
 <pre class="line after"><span class="ws">        </span>associated with it, or that was raised from an error handler.</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769960">
+<li><div class="frame" id="frame-140402979597784">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/_compat.py"</cite>,
       line <em class="line">38</em>,
       in <code class="function">reraise</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">    </span>from io import StringIO</pre>
+  <div class="source "><pre class="line before"><span class="ws">    </span>from io import StringIO</pre>
 <pre class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
 <pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
@@ -197,11 +197,11 @@
 <pre class="line after"><span class="ws"></span>else:</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769288">
+<li><div class="frame" id="frame-140402979597560">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">1950</em>,
       in <code class="function">full_dispatch_request</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+  <div class="source "><pre class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
 <pre class="line before"><span class="ws">        </span>try:</pre>
 <pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
 <pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
@@ -214,11 +214,11 @@
 <pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070770072">
+<li><div class="frame" id="frame-140402979598120">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/app.py"</cite>,
       line <em class="line">1936</em>,
       in <code class="function">dispatch_request</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span>getattr(rule, &quot;provide_automatic_options&quot;, False)</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span>getattr(rule, &quot;provide_automatic_options&quot;, False)</pre>
 <pre class="line before"><span class="ws">            </span>and req.method == &quot;OPTIONS&quot;</pre>
 <pre class="line before"><span class="ws">        </span>):</pre>
 <pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
@@ -231,11 +231,11 @@
 <pre class="line after"><span class="ws">        </span>error handling.</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070770128">
+<li><div class="frame" id="frame-140402979598288">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py"</cite>,
       line <em class="line">468</em>,
       in <code class="function">wrapper</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+  <div class="source "><pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">        </span>:param resource: The resource as a flask view function</pre>
 <pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
 <pre class="line before"><span class="ws">        </span>@wraps(resource)</pre>
@@ -248,11 +248,11 @@
 <pre class="line after"><span class="ws">        </span>return wrapper</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769344">
+<li><div class="frame" id="frame-140402979598008">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask/views.py"</cite>,
       line <em class="line">89</em>,
       in <code class="function">view</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
+  <div class="source "><pre class="line before"><span class="ws">        </span>constructor of the class.</pre>
 <pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
 <pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">        </span>def view(*args, **kwargs):</pre>
@@ -265,11 +265,11 @@
 <pre class="line after"><span class="ws">            </span>for decorator in cls.decorators:</pre></div>
 </div>
 
-<li><div class="frame" id="frame-140005070769176">
+<li><div class="frame" id="frame-140402979597728">
   <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py"</cite>,
       line <em class="line">583</em>,
       in <code class="function">dispatch_request</code></h4>
-  <div class="source library"><pre class="line before"><span class="ws">            </span>decorators = self.method_decorators</pre>
+  <div class="source "><pre class="line before"><span class="ws">            </span>decorators = self.method_decorators</pre>
 <pre class="line before"><span class="ws"></span> </pre>
 <pre class="line before"><span class="ws">        </span>for decorator in decorators:</pre>
 <pre class="line before"><span class="ws">            </span>meth = decorator(meth)</pre>
@@ -281,25 +281,8 @@
 <pre class="line after"><span class="ws"></span> </pre>
 <pre class="line after"><span class="ws">        </span>representations = self.representations or OrderedDict()</pre></div>
 </div>
-
-<li><div class="frame" id="frame-140005070769400">
-  <h4>File <cite class="filename">"/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/hamzah-API/app/leagues_api.py"</cite>,
-      line <em class="line">32</em>,
-      in <code class="function">post</code></h4>
-  <div class="source "><pre class="line before"><span class="ws">    </span>#     self.country = parser.parse_args().get('country',None)</pre>
-<pre class="line before"><span class="ws"></span> </pre>
-<pre class="line before"><span class="ws"></span> </pre>
-<pre class="line before"><span class="ws">    </span>def post(self):</pre>
-<pre class="line before"><span class="ws">        </span>args = parser.parse_args()</pre>
-<pre class="line current"><span class="ws">        </span>league = args['league']</pre>
-<pre class="line after"><span class="ws">        </span>country = args['country']</pre>
-<pre class="line after"><span class="ws">        </span>item = models.League(league_name=league, country=country)</pre>
-<pre class="line after"><span class="ws">        </span>message = f&quot;item.league_name = {item.league_name}, item.country = {item.country}&quot;</pre>
-<pre class="line after"><span class="ws">        </span>print(message)</pre>
-<pre class="line after"><span class="ws">        </span>if item.league_name and item.country:</pre></div>
-</div>
 </ul>
-  <blockquote>KeyError: 'league'</blockquote>
+  <blockquote>TypeError: put() missing 2 required positional arguments: 'old_league' and 'new_league'</blockquote>
 </div>
 
 <div class="plain">
@@ -342,9 +325,7 @@
     return self.dispatch_request(*args, **kwargs)
   File &quot;/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py&quot;, line 583, in dispatch_request
     resp = meth(*args, **kwargs)
-  File &quot;/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/hamzah-API/app/leagues_api.py&quot;, line 32, in post
-    league = args['league']
-KeyError: 'league'</textarea>
+TypeError: put() missing 2 required positional arguments: 'old_league' and 'new_league'</textarea>
   </form>
 </div>
 <div class="explanation">
@@ -410,8 +391,6 @@ Traceback (most recent call last):
     return self.dispatch_request(*args, **kwargs)
   File "/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/.venv/lib/python3.6/site-packages/flask_restful/__init__.py", line 583, in dispatch_request
     resp = meth(*args, **kwargs)
-  File "/home/cserv1_a/soc_ug/sc19mhh/CompSci/Third Year/First Sem/Distributed Systems/distributed-systems-cw/hamzah-API/app/leagues_api.py", line 32, in post
-    league = args['league']
-KeyError: 'league'
+TypeError: put() missing 2 required positional arguments: 'old_league' and 'new_league'
 
 -->
