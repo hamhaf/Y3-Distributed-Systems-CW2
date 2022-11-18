@@ -42,8 +42,10 @@ class PostLeague(Resource):
         if item.league_name and item.country:
             db.session.add(item)
             db.session.commit()
-            posted = {'country' : country,
-                'league' : league}
+            id = models.League.query.filter_by(country = country).first().id
+            posted = {'id' : id,
+                    'country' : country,
+                    'league' : league}
             print(f"posted '{posted}' to the db")
             return posted
         elif not item.league_name:
@@ -64,11 +66,11 @@ class PutLeague(Resource):
 
     def put(self):
         args = parser.parse_args()
-        recordid = args['id']
+        recordID = args['id']
         league = args['league']
         country = args['country']
         
-        record = models.League.query.filter_by(id = recordid).first()
+        record = models.League.query.filter_by(id = recordID).first()
         if record != None:
             record.league_name = league
             record.country = country
@@ -79,21 +81,31 @@ class PutLeague(Resource):
             print(changed)
             return changed
         else:
-            message = f"could not find id \'{recordid}\'"
+            message = f"could not find id \'{recordID}\'"
             print(message)
             return {"message":message}
 
 
 class DeleteLeague(Resource):
 
-    def delete(self, id):
-        models.League.query.filter_by(id = id).delete()
-        deleted = {'deleted':id}
-        print(f"deleted record with id: {id}")
-        print(deleted)
+    def delete(self):
+        args = parser.parse_args()
+        recordID = args['id']
+        record = models.League.query.filter_by(id = recordID)
+        if record.first() is not None:
+            league_name = record.first().league_name
+            country = record.first().country
+            record.delete()
+            db.session.commit()
+            deleted = {'deleted':{"league":league_name,"country":country}}
+            print(f"deleted record with id: {recordID}")
+            print(deleted)
+        else:
+            deleted = {'message':f'could not find record with id {recordID}'}
+            print(deleted)
         return deleted
 
 api.add_resource(GetLeague, '/league/getleague/<string:country>')
 api.add_resource(PostLeague, '/league/postleague')
 api.add_resource(PutLeague, '/league/putleague')
-api.add_resource(DeleteLeague, '/league/deleteleague/<int:id>')
+api.add_resource(DeleteLeague, '/league/deleteleague')
