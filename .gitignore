@@ -1,5 +1,6 @@
 #ignore database file
 app.db
+team.db
 
 #ignore log file
 info.log
