@@ -3,6 +3,8 @@ from flask_restful import reqparse, abort, Api, Resource
 from app import models, db, app
 
 parser = reqparse.RequestParser()
+parser.add_argument('league')
+parser.add_argument('country')
 
 api = Api(app)
 
@@ -22,21 +24,23 @@ class GetLeague(Resource):
 
 class PostLeague(Resource):
 
-    def __init__(self):
-        self.league = parser.parse_args().get('league',None)
-        self.country = parser.parse_args().get('country',None)
+    # def __init__(self):
+    #     self.league = parser.parse_args().get('league',None)
+    #     self.country = parser.parse_args().get('country',None)
         
 
     def post(self):
-        print("here")
-        item = models.League(league_name=self.league, country=self.country)
+        args = parser.parse_args()
+        league = args['league']
+        country = args['country']
+        item = models.League(league_name=league, country=country)
         message = f"item.league_name = {item.league_name}, item.country = {item.country}"
         print(message)
         if item.league_name and item.country:
             db.session.add(item)
             db.session.commit()
-            posted = {'country' : self.country,
-                'league' : self.league}
+            posted = {'country' : country,
+                'league' : league}
             print(f"posted '{posted}' to the db")
             return posted
         elif not item.league_name:
@@ -77,6 +81,6 @@ class DeleteLeague(Resource):
         return deleted
 
 api.add_resource(GetLeague, '/league/getleague/<string:country>')
-api.add_resource(PostLeague, '/league/postleague/')
+api.add_resource(PostLeague, '/league/postleague')
 api.add_resource(PutLeague, '/league/putleague/<string:old_league>&<string:new_league>')
 api.add_resource(DeleteLeague, '/league/deleteleague/<int:id>')
