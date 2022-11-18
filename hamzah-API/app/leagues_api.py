@@ -3,10 +3,10 @@ from flask_restful import reqparse, abort, Api, Resource
 from app import models, db, app
 
 parser = reqparse.RequestParser()
+parser.add_argument('id')
 parser.add_argument('league')
 parser.add_argument('country')
-parser.add_argument('old_league')
-parser.add_argument('new_league')
+
 
 
 api = Api(app)
@@ -64,20 +64,22 @@ class PutLeague(Resource):
 
     def put(self):
         args = parser.parse_args()
-        old_league = args['old_league']
-        new_league = args['new_league']
-        o
-        league = models.League.query.filter_by(league_name = old_league).first()
-        if league != None:
-            league.league_name = new_league
+        recordid = args['id']
+        league = args['league']
+        country = args['country']
+        
+        record = models.League.query.filter_by(id = recordid).first()
+        if record != None:
+            record.league_name = league
+            record.country = country
             db.session.commit()
-            print (f"changed '{old_league}' to '{new_league}'")
-            changed = {'old_league':old_league,
-                        'updated_league':new_league}
+            print (f"updated to '{league}' and '{country}'")
+            changed = {'league':league,
+                        'country':country}
             print(changed)
             return changed
         else:
-            message = f"could not find league \'{old_league}\'"
+            message = f"could not find id \'{recordid}\'"
             print(message)
             return {"message":message}
 
