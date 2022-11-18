@@ -19,4 +19,3 @@ log = getLogger('werkzeug')
 log.setLevel(ERROR)
 
 from app import views
-from app import models
