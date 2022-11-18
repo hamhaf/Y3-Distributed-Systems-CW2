@@ -9,7 +9,7 @@ api = Api(app)
 class GetLeague(Resource):
 
     def get(self, country):
-        country = "England"
+        # country = "England"
         league = models.League.query.filter_by(country = country).first()
         dict = {'country' : country,
                 'league' : league}
