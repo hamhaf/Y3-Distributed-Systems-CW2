@@ -9,11 +9,15 @@ api = Api(app)
 class GetLeague(Resource):
 
     def get(self, country):
-        league = models.League.query.filter_by(country = country).first().league_name
-        dict = {'country' : country,
-                'league' : league}
-        print(f"returned {league}")
-        
+        league = models.League.query.filter_by(country = country).first()#.league_name
+        if league != None:
+            league_name = league.league_name
+            dict = {'country' : country,
+                    'league' : league_name}
+            print(f"returned {league_name}")
+        else:
+            dict = {'error':f'could not find the first division league in {country}'}
+            print(f"could not find the first division league in {country}")
         return dict
 
 class PostLeague(Resource):
@@ -26,13 +30,27 @@ class PostLeague(Resource):
     def post(self):
         print("here")
         item = models.League(league_name=self.league, country=self.country)
-        db.session.add(item)
-        db.session.commit()
-        posted = {'country' : self.country,
+        message = f"item.league_name = {item.league_name}, item.country = {item.country}"
+        print(message)
+        if item.league_name and item.country:
+            db.session.add(item)
+            db.session.commit()
+            posted = {'country' : self.country,
                 'league' : self.league}
-        print(f"posted '{posted}' to the db")
+            print(f"posted '{posted}' to the db")
+            return posted
+        elif not item.league_name:
+            # message = "please provide a league name"
+            print(f"please provide a league name")
+        elif not item.country:
+            # message = "please provide a country"
+            print(f"please provide a country")
+        else:
+            # message = "Error, please try again"
+            print("Error, please try again")
+        return {'message':message}
+
         
-        return posted
 
 
 class PutLeague(Resource):
