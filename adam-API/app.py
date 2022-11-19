@@ -1,5 +1,3 @@
-import json
-
 from flask import Flask, request, jsonify, make_response
 from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
@@ -7,8 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-
-
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///team.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -36,22 +32,30 @@ class GetTeam(Resource):
 
 
 class AddTeam(Resource):
-    def post(self,teamname, league):
-        tm = Team(teamname=teamname, league=league)
-        db.session.add(tm)
-        db.session.commit()
-        return "Team added to Database"
+    def post(self):
+
+        if request.is_json:
+            data = Team(teamname=request.json['teamname'], league=request.json['league'])
+            db.session.add(data)
+            db.session.commit()
+            print("Team Added Successfully")
+            return make_response(jsonify({'team':data.teamname, 'league': data.league}),201)
+        else:
+            return {'error': 'request must be JSON'}, 400
+
+
 
 
 class UpdateTeam(Resource):
     def put(self,teamname):
         tm = Team.query.get(teamname)
         if tm is None:
-            return {'error' : 'not found'}, 404
+            return {'error': 'not found'}, 404
         else:
-            tm.teamname = request.json['TeamName']
-            tm.league = request.json['League']
+            tm.teamname = request.json['teamname']
+            tm.league = request.json['league']
             db.session.commit()
+            return "Team Updated"
 
 
 class DeleteTeam(Resource):
@@ -62,20 +66,17 @@ class DeleteTeam(Resource):
 
         db.session.delete(tm)
         db.session.commit()
+        return "Team Deleted"
 
 
 api.add_resource(GetTeam, '/<string:teamname>')
-api.add_resource(AddTeam, '/add/<string:teamname>&<string:league>')
+api.add_resource(AddTeam, '/add')
 api.add_resource(UpdateTeam, '/update/<string:teamname>')
 api.add_resource(DeleteTeam, '/delete/<string:teamname>')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
-
-#@app.route('/')
-#def hello():
- #   return "Hello"
 
 
