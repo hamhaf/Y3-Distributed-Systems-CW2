@@ -48,7 +48,7 @@ def teamInfo(team):
             'x-rapidapi-host': "v3.football.api-sports.io",
             'x-rapidapi-key': "7070e4c98d8ff888e50ff23ce14d6c4c"
             }
-        conn.request("GET", "/teams?id=33", headers=headers)
+        conn.request("GET", f"/teams?name={team}", headers=headers)
 
         res = conn.getresponse()
         data = json.loads(res.read().decode("utf-8"))
@@ -61,5 +61,13 @@ def teamInfo(team):
 
 @app.route('/showInfo')
 def showInfo():
-    data = session.get('data')
-    return render_template('teamInfo.html', title='Team Info', data=data)
+    data = session.get('data')['response'][0]['team']
+    name = data['name']
+    code = data['code']
+    country = data['country']
+    founded = data['founded']
+    national = data['national']
+    logo = data['logo']
+        
+    return render_template('teamInfo.html', title='Team Info', data=data, name=name, 
+                            code=code, country=country, founded=founded, national=national, logo=logo)
