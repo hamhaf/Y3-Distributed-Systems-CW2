@@ -43,6 +43,10 @@ p.jumbop {
   text-align: center;
 }
 
+a.jumbop {
+  text-align: center;
+}
+
 img.cover {
   display: block;
   margin-right: auto;

@@ -1,28 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="centre"> <!-- used to centre divs -->
-  <h1 class="pagetitle">Login</h1><br>
+  <h1 class="pagetitle">Select a country</h1><br>
   <div>
-    <form action="/login" method="post" name="">
+    <form action="/findLeague" method="post" name="">
         {{ form.hidden_tag() }}
         <div class="form-group">
-          <h2>Username</h2><br>
+          <h2>Country</h2><br>
           <div class="input-group">
-             {{ form.username (class_="form-control", placeholder="enter username")}}
+             {{ form.country (class_="form-control", placeholder="enter country name")}}
            </div>
            <br>
-        </div>
-        <div class="form-group">
-          <br>
-          <h2>Password</h2><br>
-          <div>
-              {{ form.password (class_="form-control", placeholder="enter password")}}
-              <br>
-              <div class="checkbox">
-                <label for="x"><input onclick="changePwdView()" type="checkbox" name="hide" id="hide"><span> show password</span></label>
-              </div>
-          </div>
-          <br>
         </div>
         <div>
           {% with messages = get_flashed_messages(with_categories=true) %}
