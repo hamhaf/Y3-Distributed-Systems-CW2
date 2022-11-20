@@ -33,14 +33,27 @@ def findLeague():
 @app.route('/showLeague')
 def showLeague():
     league = session.get('league')
-    # teams = list of teams from adams api
-    teams = ['Manchester United', 'Liverpool', 'Real Madrid']
+    leagueurl = league.replace(" ","%20")
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1:8002")
+        conn.request("GET",f"/team/{leagueurl}")
+        res = conn.getresponse()
+        teamsDict = json.loads(res.read().decode("utf-8"))['Teams']
+        teams=[]
+        for team in teamsDict:
+            teams.append(team['teamname'])
+
+        session['teams'] = teams
+    except:
+        teams = ['error']
+    # teams = ['Manchester United', 'Liverpool', 'Real Madrid']
     return render_template('showLeague.html', title='League Name', league=league, teams = teams)
 
 @app.route('/teamInfo/<team>')
 def teamInfo(team):
     flash(team)
-    team = team
+    team = team.replace(" ","%20")
+    print(f"#### team = {team} ####")
     # external API call
     try:
         conn = http.client.HTTPSConnection("v3.football.api-sports.io")
@@ -56,11 +69,13 @@ def teamInfo(team):
         flash(f"res: {res}")
         session['data']=data
     except:
-        data = "no response"
+        data = {'response':[{'team':"no response"}]}
+        print("error in teamInfo")
     return redirect(url_for('showInfo'))
 
 @app.route('/showInfo')
 def showInfo():
+    print(f"data  = {session.get('data')} in showInfo")
     data = session.get('data')['response'][0]['team']
     name = data['name']
     code = data['code']

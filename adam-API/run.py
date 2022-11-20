@@ -69,10 +69,10 @@ class DeleteTeam(Resource):
         return "Team Deleted"
 
 
-api.add_resource(GetTeam, '/<string:teamname>')
-api.add_resource(AddTeam, '/add')
-api.add_resource(UpdateTeam, '/update/<string:teamname>')
-api.add_resource(DeleteTeam, '/delete/<string:teamname>')
+api.add_resource(GetTeam, '/team/<string:teamname>')
+api.add_resource(AddTeam, '/team/add')
+api.add_resource(UpdateTeam, '/team/update/<string:teamname>')
+api.add_resource(DeleteTeam, '/team/delete/<string:teamname>')
 
 
 if __name__ == '__main__':
