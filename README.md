@@ -5,8 +5,7 @@ Installing the code
     Please git clone the repository or extract the files from zip
     You should have 3 folders: adam-API, client and hamzah-API
 
-activate venv on 3 different terminals
-    source .venv/bin/activate
+install modules from requirements.txt
 
 ensure 'export FLASK_APP=run.py' and 'export FLASK_ENV=development' are in your bashrc file
 
