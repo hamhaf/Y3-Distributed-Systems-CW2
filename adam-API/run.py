@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, make_response
 from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
+import http.client
+import time, numpy as np
 
 
 
@@ -32,28 +34,23 @@ class GetTeam(Resource):
 
 
 class AddTeam(Resource):
-    def post(self):
+    def post(self,teamname,league):
 
-        if request.is_json:
-            data = Team(teamname=request.json['teamname'], league=request.json['league'])
-            db.session.add(data)
-            db.session.commit()
-            print("Team Added Successfully")
-            return make_response(jsonify({'team':data.teamname, 'league': data.league}),201)
-        else:
-            return {'error': 'request must be JSON'}, 400
-
-
-
+        data = Team(teamname, league)
+        db.session.add(data)
+        db.session.commit()
+        print("Team Added Successfully")
+        return make_response(jsonify({'team':data.teamname, 'league': data.league}),201)
+        
 
 class UpdateTeam(Resource):
-    def put(self,teamname):
-        tm = Team.query.get(teamname)
+    def put(self,primary,teamname,league):
+        tm = Team.query.get(primary)
         if tm is None:
             return {'error': 'not found'}, 404
         else:
-            tm.teamname = request.json['teamname']
-            tm.league = request.json['league']
+            tm.teamname = teamname
+            tm.league = league
             db.session.commit()
             return "Team Updated"
 
@@ -70,10 +67,39 @@ class DeleteTeam(Resource):
 
 
 api.add_resource(GetTeam, '/team/<string:teamname>')
-api.add_resource(AddTeam, '/team/add')
-api.add_resource(UpdateTeam, '/team/update/<string:teamname>')
+api.add_resource(AddTeam, '/team/add/<string:teamname>/<string:league>')
+api.add_resource(UpdateTeam, '/team/update/<string:primary>/<string:teamname>/<string:league>')
 api.add_resource(DeleteTeam, '/team/delete/<string:teamname>')
 
+
+
+conn = http.client.HTTPConnection("127.0.0.1:8002")
+conn.request("GET",f"/team/Bundesliga")
+res = conn.getresponse()
+
+
+
+n=5
+results = []
+for x in range(1,n+1):
+    start = time.time()
+    conn = http.client.HTTPConnection("127.0.0.1:8002")
+    conn.request("GET",f"/team/Bundesliga")
+    res = conn.getresponse()
+    conn.request("POST",f"/team/add/Adamfc/Bundesliga")
+    res = conn.getresponse()
+    conn.request("PUT",f"/team/update/Adamfc/Adamfc/Premier League")
+    res = conn.getresponse()
+    conn.request("DELETE",f"/team/delete/Adamfc")
+    res = conn.getresponse()
+    end = time.time()
+    elapsed = end -start
+    print(x)
+    results.append(elapsed)
+
+
+print(f"avg = {np.mean(results)}")
+print(f"std = {np.std(results)}")
 
 if __name__ == '__main__':
     app.run(debug=True)
